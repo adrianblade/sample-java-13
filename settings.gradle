@@ -13,3 +13,4 @@ pluginManagement {
 	}
 }
 rootProject.name = 'sample-java-13'
+include "model"
