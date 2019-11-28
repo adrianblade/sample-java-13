@@ -12,4 +12,4 @@ pluginManagement {
 		}
 	}
 }
-rootProject.name = 'example'
+rootProject.name = 'sample-java-13'
