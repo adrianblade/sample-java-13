@@ -1,27 +1,44 @@
-plugins {
-	id 'org.springframework.boot' version '2.2.2.BUILD-SNAPSHOT'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
-}
-
-group = 'com.adr'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '13'
-
-repositories {
-	mavenCentral()
-	maven { url 'https://repo.spring.io/milestone' }
-	maven { url 'https://repo.spring.io/snapshot' }
-}
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		maven { url 'http://dl.bintray.com/jfrog/jfrog-jars' }
+		maven { url "https://plugins.gradle.org/m2/" }
 	}
 }
 
-test {
-	useJUnitPlatform()
+apply from: "$rootDir/gradle/versions.gradle"
+allprojects {
+	apply plugin: 'maven'
+	version projectVersion
+	group "com.adr"
+	version projectVersion
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://repo.spring.io/libs-milestone" }
+	}
+}
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'maven'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+
+	sourceCompatibility = JavaVersion.VERSION_13
+	targetCompatibility = JavaVersion.VERSION_13
+
+	compileJava.options.encoding = 'UTF-8'
+	compileTestJava.options.encoding = 'UTF-8'
+
+	configurations {
+		all*.exclude module: 'slf4j-log4j12'
+		all*.exclude module: 'hibernate-validator'
+		all*.exclude group: 'com.codahale.metrics'
+	}
 }
