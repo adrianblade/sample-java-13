@@ -11,9 +11,7 @@ import java.util.Set;
 @RestController
 public class ItemController {
 
-    List<Integer> list = List.of(1, 2, 3);
-    Set<String> set = Set.of("a", "b", "c");
-    Map<Integer, Integer> map = Map.of(1, 2, 3, 4, 5, 6);
+    List<Integer> list = new ArrayList<>();
 
     @GetMapping("/items")
     List<Integer> all() {
