@@ -1,0 +1,4 @@
+docker {
+    name "docker-registry.hiberus.com:5000/app:$projectVersion"
+    files tasks.bootJar.outputs
+}
