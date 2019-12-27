@@ -10,6 +10,11 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation('org.seleniumhq.selenium:selenium-java')
+    testImplementation('org.seleniumhq.selenium:selenium-api')
+    testImplementation('org.seleniumhq.selenium:selenium-chrome-driver')
+    testImplementation 'junit:junit:4.12'
+
 }
 
 springBoot {
